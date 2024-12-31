@@ -2,8 +2,8 @@ cmake_minimum_required(VERSION 3.26)
 
 set(PROJECT_AUTHOR "FlayaN")
 project(
-  commonlibsse-ng-submodule-template
-  VERSION 0.0.1
+  flayan-Tweaks
+  VERSION 1.0.0
   LANGUAGES CXX)
 
 # ##############################################################################
@@ -38,6 +38,7 @@ message("\tZip to dist: ${ZIP_TO_DIST}")
 # # Find dependencies
 # ##############################################################################
 
+find_package(unordered_dense CONFIG REQUIRED)
 find_path(CLIB_UTIL_INCLUDE_DIRS "ClibUtil/detail/SimpleIni.h")
 
 # ##############################################################################
@@ -45,6 +46,8 @@ find_path(CLIB_UTIL_INCLUDE_DIRS "ClibUtil/detail/SimpleIni.h")
 # ##############################################################################
 
 target_include_directories(${PROJECT_NAME} PRIVATE ${CLIB_UTIL_INCLUDE_DIRS})
+
+target_link_libraries(${PROJECT_NAME} PRIVATE unordered_dense::unordered_dense)
 
 # ##############################################################################
 # # Generates a zip in /dist

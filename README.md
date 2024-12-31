@@ -1,10 +1,6 @@
-# CommonLibSSE NG Plugin template
-Yet another Skyrim script extender plugin template using my preferred setup
-
-## Initial setup
-
-Set Author and Project Name here
-https://github.com/FlayaN/commonlibsse-ng-submodule-template/blob/main/CMakeLists.txt#L3-L5
+# Flayan Tweaks
+Yet another Skyrim SKSE Tweaks/fixes plugin
+*	[Nexus link](https://www.nexusmods.com/skyrimspecialedition/mods/137944)
 
 ## Requirements
 

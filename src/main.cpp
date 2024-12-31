@@ -1,9 +1,12 @@
+#include "Hooks.h"
+
 static void MessageHandler(SKSE::MessagingInterface::Message* message)
 {
 	switch (message->type) {
 	case SKSE::MessagingInterface::kPostLoad:
 		{
 			logger::info("{:*^50}", "POST LOAD"sv);
+			Hooks::PostLoad::Install();
 		}
 		break;
 	default:

@@ -6,11 +6,32 @@
 #include "RE/Skyrim.h"
 #include "SKSE/SKSE.h"
 
+#include <ankerl/unordered_dense.h>
 #include <spdlog/sinks/basic_file_sink.h>
 
+#include <ClibUtil/simpleINI.hpp>
+#include <ClibUtil/singleton.hpp>
+
 namespace logger = SKSE::log;
+namespace string = clib_util::string;
+namespace ini = clib_util::ini;
 
 using namespace std::literals;
+using namespace clib_util::singleton;
+
+struct string_hash
+{
+	using is_transparent = void;  // enable heterogeneous overloads
+	using is_avalanching = void;  // mark class as high quality avalanching hash
+
+	[[nodiscard]] std::uint64_t operator()(std::string_view str) const noexcept
+	{
+		return ankerl::unordered_dense::hash<std::string_view>{}(str);
+	}
+};
+
+template <class D>
+using StringMap = ankerl::unordered_dense::map<std::string, D, string_hash, std::equal_to<>>;
 
 namespace stl
 {
